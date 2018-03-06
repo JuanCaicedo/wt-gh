@@ -1,0 +1,16 @@
+{
+  "name": "wt-gh",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "deploy": "wt create index.js",
+    "test": "curl https://wt-e2fe6708372e50d9354feef236e6ab70-0.run.webtask.io/wt-gh"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "wt-cli": "^9.0.3"
+  }
+}
