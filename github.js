@@ -8,7 +8,6 @@ const convertNotifications = R.map(n => {
       id: n.repository.id,
     },
     subject: {
-      type: n.subject.type,
       latestCommentUrl: n.subject.latest_comment_url,
       url: n.subject.url,
       title: n.subject.title,

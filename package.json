@@ -17,8 +17,7 @@
   },
   "dependencies": {
     "@octokit/rest": "^14.0.9",
-    "auth0": "^2.9.1",
-    "firebase-admin": "^5.9.1",
+    "mongoose": "^5.0.9",
     "ramda": "^0.25.0"
   }
 }
