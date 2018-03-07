@@ -2,11 +2,16 @@
 const R = require('ramda')
 const { ManagementClient } = require('auth0')
 const GitHub = require('./github')
+const Firebase = require('./firebase')
+const serviceAccount = require('./service-account')
 
 module.exports = (ctx, done) => {
-  const token = ctx.secrets.GH_TOKEN
-  const github = new GitHub(GitHub.getClient(token))
-  return github.getNotifications().then(notifications => {
-    done(null, notifications)
-  })
+  const { GH_TOKEN: ghToken, FB_KEY_ID: fbKeyId, FB_KEY: fbKey } = ctx.secrets
+  const github = new GitHub(GitHub.getClient(ghToken))
+  const firebase = new Firebase(Firebase.getClient(serviceAccount))
+  return github
+    .getNotifications()
+    .then(notifications => firebase.saveNotifications(notifications))
+    .then(() => done(null, 'Saved notifications successfully'))
+    .catch(err => done(err))
 }
