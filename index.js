@@ -1,25 +1,22 @@
 'use latest'
 const R = require('ramda')
 const GitHub = require('./github')
-const Mongo = require('./mongo')
+const Db = require('./db')
 
 module.exports = (ctx, done) => {
   const { GH_TOKEN, MONGO_URL } = ctx.secrets
   const { user_name: userName } = ctx.data
   const github = new GitHub(GitHub.getClient(GH_TOKEN))
 
-  let mongo
-  return Mongo.getClient(MONGO_URL)
-    .then(client => new Mongo(client))
-    .then(instance => (mongo = instance))
-    .then(() => mongo.getLastTime(userName))
+  return Db.getClient(MONGO_URL)
+    .then(() => Db.findLastTime(userName))
     .then(lastTime => github.getNotifications(lastTime))
-    .then(notifications => mongo.saveNotifications(userName, notifications))
+    .then(notifications => Db.saveNotifications(userName, notifications))
     .then(result => {
       if (!result) {
         return done(null, 'No new Notifications')
       }
-      done(null, 'Saved notifications successfully')
+      return done(null, 'Saved notifications successfully')
     })
     .catch(err => done(err))
 }

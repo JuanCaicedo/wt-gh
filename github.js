@@ -1,22 +1,6 @@
 const R = require('ramda')
 const GitHubApi = require('@octokit/rest')
-
-const convertNotifications = R.map(n => {
-  return {
-    repository: {
-      fullName: n.repository.full_name,
-      id: n.repository.id,
-    },
-    subject: {
-      latestCommentUrl: n.subject.latest_comment_url,
-      url: n.subject.url,
-      title: n.subject.title,
-    },
-    time: n.updated_at,
-    id: parseInt(n.id),
-    unread: n.unread,
-  }
-})
+const { convertNotifications } = require('./utils')
 
 class GitHub {
   constructor(client) {
