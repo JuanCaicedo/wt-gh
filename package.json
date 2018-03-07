@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "deploy": "wt create index.js --secrets-file secrets.txt --bundle",
+    "cron": "wt cron create index.js --schedule 1m --secrets-file secrets.txt --bundle",
     "dev": "nodemon --exec ' wt serve index.js --secrets-file secrets.txt '",
-    "test": "curl 'https://wt-e2fe6708372e50d9354feef236e6ab70-0.run.webtask.io/wt-gh'"
+    "test": "curl 'https://wt-e2fe6708372e50d9354feef236e6ab70-0.run.webtask.io/wt-gh?user_name=juan'"
   },
   "keywords": [],
   "author": "",

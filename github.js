@@ -29,9 +29,10 @@ class GitHub {
     return github
   }
 
-  getNotifications() {
+  getNotifications(since) {
+    const params = since ? { since } : {}
     return this.client.activity
-      .getNotifications()
+      .getNotifications(params)
       .then(({ data }) => convertNotifications(data))
   }
 }
