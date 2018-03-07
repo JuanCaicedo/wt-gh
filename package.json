@@ -4,13 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "deploy": "wt create index.js",
-    "test": "curl https://wt-e2fe6708372e50d9354feef236e6ab70-0.run.webtask.io/wt-gh"
+    "deploy": "wt create index.js --secrets-file secrets.txt --bundle",
+    "dev": "nodemon --exec ' wt serve index.js --secrets-file secrets.txt '",
+    "test": "curl 'https://wt-e2fe6708372e50d9354feef236e6ab70-0.run.webtask.io/wt-gh?user_id=github|4341496'"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "nodemon": "^1.17.1",
     "wt-cli": "^9.0.3"
+  },
+  "dependencies": {
+    "@octokit/rest": "^14.0.9",
+    "auth0": "^2.9.1",
+    "ramda": "^0.25.0"
   }
 }
