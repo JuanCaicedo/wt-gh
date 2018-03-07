@@ -15,7 +15,7 @@ module.exports = (ctx, done) => {
     .then(notifications => Db.saveNotifications(userName, notifications))
     .then(result => {
       if (!result) {
-        return done(null, 'No new Notifications')
+        return done(null, 'No new notifications')
       }
       return done(null, 'Saved notifications successfully')
     })

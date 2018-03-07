@@ -1,16 +1,17 @@
 {
   "name": "wt-gh",
   "version": "1.0.0",
-  "description": "",
+  "description": "webtask.io service to save github notifications to mongo",
   "main": "index.js",
   "scripts": {
     "deploy": "wt create index.js --secrets-file secrets.txt --bundle",
     "cron": "wt cron create index.js --schedule 1m --secrets-file secrets.txt --bundle --param user_name=juan",
     "dev": "nodemon --exec ' wt serve index.js --secrets-file secrets.txt '",
-    "test": "curl 'https://wt-e2fe6708372e50d9354feef236e6ab70-0.run.webtask.io/wt-gh?user_name=juan'"
+    "test": "curl 'https://wt-e2fe6708372e50d9354feef236e6ab70-0.run.webtask.io/wt-gh?user_name=juan'",
+    "test-locally": "curl 'http://localhost:8080/?user_name=juan'"
   },
   "keywords": [],
-  "author": "",
+  "author": "Juan Caicedo",
   "license": "ISC",
   "devDependencies": {
     "nodemon": "^1.17.1",
