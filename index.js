@@ -6,9 +6,10 @@ const Firebase = require('./firebase')
 const serviceAccount = require('./service-account')
 
 module.exports = (ctx, done) => {
-  const { GH_TOKEN: ghToken, FB_KEY_ID: fbKeyId, FB_KEY: fbKey } = ctx.secrets
+  const { GH_TOKEN: ghToken } = ctx.secrets
   const github = new GitHub(GitHub.getClient(ghToken))
   const firebase = new Firebase(Firebase.getClient(serviceAccount))
+
   return github
     .getNotifications()
     .then(notifications => firebase.saveNotifications(notifications))
