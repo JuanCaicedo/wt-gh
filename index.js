@@ -6,6 +6,7 @@ const Db = require('./db')
 module.exports = (ctx, done) => {
   const { GH_TOKEN, MONGO_URL } = ctx.secrets
   const { user_name: userName } = ctx.data
+
   const github = new GitHub(GitHub.getClient(GH_TOKEN))
 
   return Db.getClient(MONGO_URL)
